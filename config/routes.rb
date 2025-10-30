@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resource :session
   resources :passwords, param: :token
+  get "/signup", to: "users#new", as: :signup
   root "articles#index"
   resources :articles
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
