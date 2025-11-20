@@ -1,4 +1,4 @@
-<%= form_with model: @post, url: posts_path, class: "space-y-6" do |f| %>
+<%= form_with model: @post, local: true, class: "space-y-6" do |f| %>
   <div class="space-y-2">
     <%= f.label :title, "Title",
       class: "flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50" %>
