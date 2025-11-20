@@ -1,0 +1,33 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="mb-8 flex items-center justify-between">
+    <div>
+      <h1 class="text-4xl font-bold tracking-tight">My Blogs</h1>
+      <p class="mt-2 text-muted-foreground">Manage your blog posts</p>
+    </div>
+
+    <%= link_to "Create New Blog", new_post_path,
+      data: { slot: "button" },
+      class: "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3" %>
+  </div>
+
+  <% if @posts.any? %>
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <% @posts.each do |post| %>
+        <div class="bg-card text-card-foreground gap-6 rounded-xl border py-6 shadow-sm flex flex-col overflow-hidden">
+          <div class="px-6">
+            <h2 class="font-semibold"><%= post.title %></h2>
+            <p class="text-sm text-muted-foreground"><%= post.description %></p>
+            <p class="mt-2 text-xs text-muted-foreground"><%= post.created_at.strftime("%d/%m/%Y") %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="flex flex-col items-center justify-center py-12">
+      <p class="text-lg text-muted-foreground">You haven't created any blogs yet.</p>
+      <%= link_to "Create Your First Blog", new_post_path,
+        data: { slot: "button" },
+        class: "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3 mt-4" %>
+    </div>
+  <% end %>
+</div>
