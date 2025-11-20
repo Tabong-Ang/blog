@@ -9,8 +9,8 @@
       <div data-slot="card" class="bg-card text-card-foreground gap-6 rounded-xl border py-6 shadow-sm flex flex-col overflow-hidden">
         <!-- Image -->
         <div class="relative h-48 w-full overflow-hidden bg-muted">
-          <% if post.image.present? %>
-            <%= image_tag post.image,
+          <% if post.image_url.present? %>
+            <%= image_tag post.image_url,
                 alt: post.title,
                 class: "object-cover",
                 style: "position: absolute; height: 100%; width: 100%; inset: 0; color: transparent;" %>
@@ -25,7 +25,7 @@
             <%= post.title %>
           </div>
           <div data-slot="card-description" class="text-muted-foreground text-sm">
-            By <%= post.author.presence || "Unknown" %>
+            By <%= post.user.presence || "Unknown" %>
           </div>
         </div>
 
