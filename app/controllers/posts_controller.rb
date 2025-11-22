@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :my_posts]
+  before_action :authenticate_user!, only: [ :new, :create, :my_posts ]
 
   def index
     @posts = Post.all
@@ -24,6 +24,6 @@ class PostsController < ApplicationController
 
   private
     def user_params
-      params.expect(post: [:title, :description, :image_url])
+      params.expect(post: [ :title, :description, :image_url ])
     end
 end
