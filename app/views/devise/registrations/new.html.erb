@@ -1,0 +1,61 @@
+<div data-slot="card" class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm w-full max-w-md mx-auto">
+  <div data-slot="card-header" class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6 space-y-1">
+    <div data-slot="card-title" class="text-2xl font-bold">Sign Up</div>
+    <div data-slot="card-description" class="text-muted-foreground text-sm">
+      Create an account to start blogging
+    </div>
+  </div>
+
+  <div data-slot="card-content" class="px-6">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "space-y-4" }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="space-y-2">
+        <%= f.label :email, "Email",
+          data: { slot: "label" },
+          class: "flex items-center gap-2 text-sm leading-none font-medium select-none" %>
+        <%= f.email_field :email,
+          autofocus: true,
+          autocomplete: "email",
+          placeholder: "you@example.com",
+          data: { slot: "input" },
+          class: "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]" %>
+      </div>
+
+      <div class="space-y-2">
+        <%= f.label :password, "Password",
+          data: { slot: "label" },
+          class: "flex items-center gap-2 text-sm leading-none font-medium select-none" %>
+        <% if @minimum_password_length %>
+          <em class="text-xs text-muted-foreground">(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %>
+        <%= f.password_field :password,
+          autocomplete: "new-password",
+          placeholder: "••••••••",
+          data: { slot: "input" },
+          class: "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]" %>
+      </div>
+
+      <div class="space-y-2">
+        <%= f.label :password_confirmation, "Confirm Password",
+          data: { slot: "label" },
+          class: "flex items-center gap-2 text-sm leading-none font-medium select-none" %>
+        <%= f.password_field :password_confirmation,
+          autocomplete: "new-password",
+          placeholder: "••••••••",
+          data: { slot: "input" },
+          class: "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]" %>
+      </div>
+
+      <%= f.submit "Sign Up",
+        data: { slot: "button" },
+        class: "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-4 py-2 w-full" %>
+    <% end %>
+
+    <div class="mt-4 text-center text-sm">
+      Already have an account?
+      <%= link_to "Login", new_user_session_path,
+        class: "text-primary underline-offset-4 hover:underline" %>
+    </div>
+  </div>
+</div>
