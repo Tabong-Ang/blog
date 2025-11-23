@@ -1,0 +1,44 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="mb-8">
+    <h1 class="text-4xl font-bold tracking-tight">All Blogs</h1>
+    <p class="mt-2 text-muted-foreground">Discover stories from our community</p>
+  </div>
+
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <% @posts.each do |post| %>
+      <div data-slot="card" class="bg-card text-card-foreground gap-6 rounded-xl border py-6 shadow-sm flex flex-col overflow-hidden">
+        <!-- Image -->
+        <div class="relative h-48 w-full overflow-hidden bg-muted">
+          <% if post.image_url.present? %>
+            <%= image_tag post.image_url,
+                alt: post.title,
+                class: "object-cover",
+                style: "position: absolute; height: 100%; width: 100%; inset: 0; color: transparent;" %>
+          <% else %>
+            <div class="flex items-center justify-center h-full text-muted-foreground">No image</div>
+          <% end %>
+        </div>
+
+        <!-- Header -->
+        <div data-slot="card-header" class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6">
+          <div data-slot="card-title" class="leading-none font-semibold line-clamp-2">
+            <%= post.title %>
+          </div>
+          <div data-slot="card-description" class="text-muted-foreground text-sm">
+            By <%= post.user.presence || "Unknown" %>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div data-slot="card-content" class="px-6 flex-1">
+          <p class="line-clamp-3 text-sm text-muted-foreground">
+            <%= post.description %>
+          </p>
+          <p class="mt-4 text-xs text-muted-foreground">
+            <%= post.created_at.strftime("%d/%m/%Y") %>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
